@@ -1,0 +1,43 @@
+# https://github.com/itzg/docker-minecraft-server
+services:
+  mc-server:
+    image: itzg/minecraft-server
+    ports:
+      - 25565:25565 # main port
+      - 25575:25575 # rcon
+      - 24454:24454/udp # for simple-voice-chat
+    environment:
+      SERVER_NAME: Bumsbude
+      MOTD: "Chli chlötzlä..."
+      SEED: 5990949906752028501
+      LEVEL: world-5990949906752028501
+      VERSION: 1.19.2
+      MODRINTH_PROJECTS: fabric-api,simple-voice-chat
+      VANILLATWEAKS_SHARECODE: oceNH3,xnqI8i
+      OPS: e3d99f42-9c36-42ba-b758-6fecefd94777
+      ICON: https://luhelan.ch/images/logo-text.png
+      RCON_PASSWORD: <changeme>
+      EULA: TRUE
+      TYPE: FABRIC
+      MODE: survival
+      OVERRIDE_SERVER_PROPERTIES: true
+      DIFFICULTY: hard
+      ENABLE_WHITELIST: true
+      ENFORCE_WHITELIST: true
+      OVERRIDE_ICON: true
+      ENABLE_RCON: true
+      MAX_PLAYERS: 20
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: true
+      SNOOPER_ENABLED: false
+      SPAWN_PROTECTION: 0
+      VIEW_DISTANCE: 12
+      RCON_CMDS_STARTUP: |-
+        gamerule doFireTick false
+      MAX_TICK_TIME: "-1"
+      ENABLE_AUTOPAUSE: true
+      MEMORY: "1500M"
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
