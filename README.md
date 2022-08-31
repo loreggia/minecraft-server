@@ -53,6 +53,14 @@ Currently the following packs are selected:
 
 The RCON password should be changed (or disable RCON by setting the ENABLE_RCON variable to false).
 
+# Setup
+
+## Docker
+
+Docker & Docker-Compose has to be installed on the host system.
+On a desktop OS, download [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+On Linux/Windows servers please look at the [docs](https://docs.docker.com/engine/install/) (don't forget the Compose plugin).
+
 ## Starting
 
 Run `start.ps1` with PowerShell or manually run
