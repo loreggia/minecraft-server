@@ -7,10 +7,10 @@ services:
       - 25575:25575 # rcon
       - 24454:24454/udp # for simple-voice-chat
     environment:
-      SERVER_NAME: Bumsbude
+      SERVER_NAME: luhelan.ch
       MOTD: "Chli chlötzlä..."
-      SEED: 5990949906752028501
-      LEVEL: world-5990949906752028501
+      SEED: -4718565869281272914
+      LEVEL: world--4718565869281272914
       VERSION: 1.19.3
       MODRINTH_PROJECTS: phosphor,lithium,fabric-api,simple-voice-chat,no-chat-reports
       VANILLATWEAKS_SHARECODE: oceNH3,xnqI8i
