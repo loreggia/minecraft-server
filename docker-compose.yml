@@ -11,11 +11,11 @@ services:
       MOTD: "Chli chlötzlä..."
       SEED: 5990949906752028501
       LEVEL: world-5990949906752028501
-      VERSION: 1.19.2
-      MODRINTH_PROJECTS: fabric-api,simple-voice-chat
+      VERSION: 1.19.3
+      MODRINTH_PROJECTS: phosphor,lithium,fabric-api,simple-voice-chat,no-chat-reports
       VANILLATWEAKS_SHARECODE: oceNH3,xnqI8i
       OPS: e3d99f42-9c36-42ba-b758-6fecefd94777
-      ICON: https://luhelan.ch/images/logo-text.png
+      # ICON: https://luhelan.ch/images/logo-text.png
       RCON_PASSWORD: <changeme>
       EULA: TRUE
       TYPE: FABRIC
@@ -33,6 +33,12 @@ services:
       VIEW_DISTANCE: 12
       RCON_CMDS_STARTUP: |-
         gamerule doFireTick false
+        gamerule blockExplosionDropDecay false
+        gamerule mobExplosionDropDecay false
+        gamerule tntExplosionDropDecay false
+        gamerule waterSourceConversion true
+        gamerule lavaSourceConversion true
+        gamerule globalSoundEvents false
       MAX_TICK_TIME: "-1"
       ENABLE_AUTOPAUSE: true
       MEMORY: "1500M"
