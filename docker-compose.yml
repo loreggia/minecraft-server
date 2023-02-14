@@ -41,6 +41,8 @@ services:
         gamerule globalSoundEvents false
       MAX_TICK_TIME: "-1"
       ENABLE_AUTOPAUSE: true
+      AUTOPAUSE_TIMEOUT_EST: 600
+      AUTOPAUSE_TIMEOUT_INIT: 300
       MEMORY: "1500M"
     tty: true
     stdin_open: true
