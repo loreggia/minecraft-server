@@ -44,7 +44,7 @@ services:
       ENABLE_AUTOPAUSE: true
       AUTOPAUSE_TIMEOUT_EST: 600
       AUTOPAUSE_TIMEOUT_INIT: 300
-      MEMORY: "1500M"
+      MEMORY: "4G"
     tty: true
     stdin_open: true
     restart: always
