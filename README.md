@@ -29,6 +29,10 @@ All server settings are managed using environment variables in the docker-compos
 
 ```
 
+### OPs, Whitelist
+
+Initial login GUIDs for OPs and whitelisted players can be added as a comma-separated list to the `OPS` and `WHITELIST` environment variables. Existing entries in the respective files are kept.
+
 ### Mods
 
 Mods from [modrinth](https://modrinth.com) are automatically installed/updated. Enter a comma separated list of mod slugs (the URL-name of the mod) or Project IDs (bottom left on the modrinth mod page) in the MODRINTH_PROJECTS variable.
