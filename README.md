@@ -9,16 +9,23 @@ Docs: [Github](https://github.com/itzg/docker-minecraft-server)
 
 All server settings are managed using environment variables in the docker-compose.yml file.
 
-### Data Directory
+### Data Directories / Volumes
 
-The data directory can be changed by replacing the first part of the data volume binding in the docker-compose file.
-Per default, the data is stored at ./data in the project root.
+1. The world data is mapped to a named docker volume. **This is only necessary on windows and can be removed when running on linux.**
+
+   This fixes a problem when running on Windows 11, see https://github.com/itzg/docker-minecraft-server/issues/1102 for updates.
+   To access the data directory on Windows 11 navigate to `\\wsl.localhost\docker-desktop-data\version-pack-data\community\docker\volumes\minecraft-server_world\_data`.
+
+2. The root data directory can be changed by replacing the first part of the volume binding in the docker-compose file.
+
+   Per default, the data is stored at ./data in the project root.
 
 ```
     ...
     # replace './data' below with a different path
     volumes:
-      - ./data:/data
+1->   - world:/data/world
+2->   - ./data:/data
 
 ```
 

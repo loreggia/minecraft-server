@@ -7,14 +7,15 @@ services:
       - 25575:25575 # rcon
       - 24454:24454/udp # for simple-voice-chat
     environment:
-      SERVER_NAME: luhelan.ch
+      SERVER_NAME: Uagadugli Ultras
       MOTD: "Chli chlötzlä..."
-      SEED: -4718565869281272914
-      LEVEL: world--4718565869281272914
-      VERSION: 1.19.3
+      SEED: minecraft_1.20
+      LEVEL: world
+      VERSION: 1.20.1
       MODRINTH_PROJECTS: phosphor,lithium,fabric-api,simple-voice-chat,no-chat-reports
-      VANILLATWEAKS_SHARECODE: oceNH3,xnqI8i
+      VANILLATWEAKS_SHARECODE: m3HiMA,KR1Q4G
       OPS: e3d99f42-9c36-42ba-b758-6fecefd94777
+      WHITELIST: e3d99f42-9c36-42ba-b758-6fecefd94777
       # ICON: https://luhelan.ch/images/logo-text.png
       RCON_PASSWORD: <changeme>
       EULA: TRUE
@@ -46,6 +47,10 @@ services:
       MEMORY: "1500M"
     tty: true
     stdin_open: true
-    restart: unless-stopped
+    restart: always
     volumes:
+      - world:/data/world
       - ./data:/data
+
+volumes:
+  world:
