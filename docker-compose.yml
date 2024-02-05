@@ -9,10 +9,10 @@ services:
     environment:
       SERVER_NAME: Uagadugli Ultras
       MOTD: "Chli chlötzlä..."
-      SEED: minecraft_1.20
-      LEVEL: world
-      VERSION: 1.20.1
-      MODRINTH_PROJECTS: phosphor,lithium,fabric-api,simple-voice-chat,no-chat-reports
+      SEED: 5103687417315433447
+      LEVEL: 5103687417315433447
+      VERSION: 1.20.4
+      MODRINTH_PROJECTS: lithium,fabric-api,simple-voice-chat,no-chat-reports
       VANILLATWEAKS_SHARECODE: m3HiMA,KR1Q4G
       OPS: e3d99f42-9c36-42ba-b758-6fecefd94777
       WHITELIST: e3d99f42-9c36-42ba-b758-6fecefd94777
@@ -31,7 +31,7 @@ services:
       ANNOUNCE_PLAYER_ACHIEVEMENTS: true
       SNOOPER_ENABLED: false
       SPAWN_PROTECTION: 0
-      VIEW_DISTANCE: 12
+      VIEW_DISTANCE: 16
       RCON_CMDS_STARTUP: |-
         gamerule doFireTick false
         gamerule blockExplosionDropDecay false
@@ -49,8 +49,4 @@ services:
     stdin_open: true
     restart: always
     volumes:
-      - world:/data/world
       - ./data:/data
-
-volumes:
-  world:

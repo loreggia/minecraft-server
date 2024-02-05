@@ -9,24 +9,17 @@ Docs: [Github](https://github.com/itzg/docker-minecraft-server)
 
 All server settings are managed using environment variables in the docker-compose.yml file.
 
-### Data Directories / Volumes
+### Data Directory
 
-1. The world data is mapped to a named docker volume. **This is only necessary on windows and can be removed when running on linux.**
+The root data directory can be changed by replacing the first part of the volume binding in the docker-compose file.
 
-   This fixes a problem when running on Windows 11, see https://github.com/itzg/docker-minecraft-server/issues/1102 for updates.
-   To access the data directory on Windows 11 navigate to `\\wsl.localhost\docker-desktop-data\version-pack-data\community\docker\volumes\minecraft-server_world\_data`.
-
-2. The root data directory can be changed by replacing the first part of the volume binding in the docker-compose file.
-
-   Per default, the data is stored at ./data in the project root.
+Per default, the data is stored at ./data in the project root.
 
 ```
     ...
     # replace './data' below with a different path
     volumes:
-1->   - world:/data/world
-2->   - ./data:/data
-
+      - ./data:/data
 ```
 
 ### OPs, Whitelist
@@ -40,7 +33,6 @@ Mods from [modrinth](https://modrinth.com) are automatically installed/updated. 
 Currently the following mods are installed:
 
 - [Fabric API](https://modrinth.com/mod/fabric-api)
-- [Phosphor](https://modrinth.com/mod/phosphor)
 - [Lithium](https://modrinth.com/mod/lithium)
 - [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat)
 - [No Chat Reports](https://modrinth.com/mod/no-chat-reports)
