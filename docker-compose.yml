@@ -12,11 +12,12 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: 1.20.4
-      MODRINTH_PROJECTS: lithium,fabric-api,simple-voice-chat,no-chat-reports
+      MODRINTH_PROJECTS: lithium,fabric-api,carpet,simple-voice-chat,no-chat-reports
       VANILLATWEAKS_SHARECODE: m3HiMA,KR1Q4G
+      INITIAL_ENABLED_PACKS: update_1_21,bundle
       OPS: e3d99f42-9c36-42ba-b758-6fecefd94777
       WHITELIST: e3d99f42-9c36-42ba-b758-6fecefd94777
-      # ICON: https://luhelan.ch/images/logo-text.png
+      ICON: https://luhelan.ch/images/logo.png
       RCON_PASSWORD: <changeme>
       EULA: TRUE
       TYPE: FABRIC
