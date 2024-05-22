@@ -12,7 +12,8 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: 1.20.4
-      MODRINTH_PROJECTS: lithium,fabric-api,carpet,simple-voice-chat,no-chat-reports
+      MODRINTH_PROJECTS: lithium,fabric-api,carpet,simple-voice-chat,no-chat-reports,armor-poser:beta,audioplayer
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: m3HiMA,KR1Q4G
       INITIAL_ENABLED_PACKS: update_1_21,bundle
       OPS: e3d99f42-9c36-42ba-b758-6fecefd94777
