@@ -69,3 +69,15 @@ services:
     restart: always
     volumes:
       - ./data:/data
+
+  web:
+    image: httpd:2.4-alpine
+    volumes:
+      - ./web:/usr/local/apache2/htdocs
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.minecraft-server-web.rule: 'Host("${WEB_HOST}")'
+      traefik.http.routers.minecraft-server-web.service: "minecraft-server-web"
+      traefik.http.routers.minecraft-server-web.tls: "true"
+      traefik.http.routers.minecraft-server-web.tls.certresolver: "default"
+      traefik.http.services.minecraft-server-web.loadbalancer.server.port: "80"
