@@ -1,2 +1,2 @@
-docker compose -p minecraft-server pull
-docker compose -p minecraft-server up -d
+docker compose -p minecraft pull
+docker compose -p minecraft up -d

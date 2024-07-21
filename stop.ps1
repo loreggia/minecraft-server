@@ -1,1 +1,1 @@
-docker compose -p minecraft-server stop
+docker compose -p minecraft stop
