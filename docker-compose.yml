@@ -69,6 +69,8 @@ services:
     restart: always
     volumes:
       - ./data:/data
+    networks:
+      - web
 
   web:
     image: httpd:2.4-alpine
@@ -81,3 +83,9 @@ services:
       traefik.http.routers.minecraft-server-web.tls: "true"
       traefik.http.routers.minecraft-server-web.tls.certresolver: "default"
       traefik.http.services.minecraft-server-web.loadbalancer.server.port: "80"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
