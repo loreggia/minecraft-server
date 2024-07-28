@@ -86,6 +86,7 @@ services:
       traefik.http.routers.minecraft-server-web.tls: "true"
       traefik.http.routers.minecraft-server-web.tls.certresolver: "default"
       traefik.http.services.minecraft-server-web.loadbalancer.server.port: "80"
+    restart: always
     networks:
       - web
 
