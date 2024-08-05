@@ -37,6 +37,7 @@ services:
         524d8eeb-0fc1-40bf-be3b-d8b0a0efd0f0
         f999dea9-b112-461c-ad2a-e5498eea08ce
         0f1295af-1d78-46fe-aefb-90a20083fcc8
+        05af1765-5a9d-48b7-a943-5816312b791c
       EXISTING_WHITELIST_FILE: MERGE
       ICON: https://luhelan.ch/images/logo.png
       RCON_PASSWORD: <changeme>
