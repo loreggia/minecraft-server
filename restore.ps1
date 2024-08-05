@@ -13,6 +13,8 @@ param (
     $Path
 )
 
+Push-Location $PSScriptRoot;
 Remove-Item -Path "./data-old" -Recurse -Force -ErrorAction SilentlyContinue;
 Rename-Item -Path "data" -NewName "data-old";
 Expand-Archive -Path $Path -DestinationPath "./data";
+Pop-Location;
