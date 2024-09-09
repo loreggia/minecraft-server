@@ -12,11 +12,11 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: 1.21
-      MODRINTH_PROJECTS: lithium,fabric-api,simple-voice-chat,no-chat-reports,armor-poser,audioplayer
-      MODRINTH_ALLOWED_VERSION_TYPE: alpha
+      MODRINTH_PROJECTS: fabric-api,carpet,simple-voice-chat,no-chat-reports,armor-poser,audioplayer
+      MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
-      CF_API_KEY: "${CF_API_KEY}"
-      CURSEFORGE_FILES: carpet
+      # CF_API_KEY: "${CF_API_KEY}"
+      # CURSEFORGE_FILES: carpet
       VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
       INITIAL_ENABLED_PACKS: bundle
       OPS: |
