@@ -11,7 +11,7 @@ services:
       MOTD: "Chli chlötzlä..."
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
-      VERSION: 1.21
+      VERSION: 1.21.1
       MODRINTH_PROJECTS: fabric-api,carpet,simple-voice-chat,no-chat-reports,armor-poser,audioplayer
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
