@@ -1,23 +1,44 @@
 # https://github.com/itzg/docker-minecraft-server
 services:
-  mc-server:
-    image: itzg/minecraft-server
+  proxy:
+    image: itzg/mc-proxy
     ports:
-      - 25565:25565 # main port
-      - 25575:25575 # rcon
+      - 25565:25565
       - 24454:24454/udp # for simple-voice-chat
     environment:
+      TYPE: "VELOCITY"
+      ICON: https://luhelan.ch/images/logo.png
+      ENV_VARIABLE_PREFIX: "CFG_"
+      CFG_MOTD: "Chli chlötzlä!"
+      CFG_FORWARDING_SECRET:
+      REPLACE_ENV_VARIABLES: "true"
+      MINECRAFT_VERSION: 1.21.4
+      MODRINTH_PROJECTS: "simple-voice-chat"
+      MODRINTH_ALLOWED_VERSION_TYPE: beta
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+    volumes:
+      - ./proxy:/config
+      - proxy-data:/server
+    networks:
+      - default
+      - web
+
+  mc-main:
+    image: itzg/minecraft-server
+    ports:
+      - 25565
+      - 25575 # rcon
+      - 24454/udp # for simple-voice-chat
+    environment:
+      DEBUG: false
       SERVER_NAME: Uagadugli Ultras
       MOTD: "Chli chlötzlä..."
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: 1.21.4
-      # ,carpet
-      MODRINTH_PROJECTS: fabric-api,simple-voice-chat,no-chat-reports,armor-poser,audioplayer
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
-      # CF_API_KEY: "${CF_API_KEY}"
-      # CURSEFORGE_FILES: carpet
       VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
       OPS: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
@@ -40,11 +61,13 @@ services:
         05af1765-5a9d-48b7-a943-5816312b791c
       EXISTING_WHITELIST_FILE: MERGE
       ICON: https://luhelan.ch/images/logo.png
-      RCON_PASSWORD: <changeme>
+      # RCON_PASSWORD:
       EULA: TRUE
       TYPE: FABRIC
       MODE: survival
+      FORCE_GAMEMODE: true
       OVERRIDE_SERVER_PROPERTIES: true
+      ONLINE_MODE: true
       DIFFICULTY: hard
       ENABLE_WHITELIST: true
       ENFORCE_WHITELIST: true
@@ -55,6 +78,8 @@ services:
       SNOOPER_ENABLED: false
       SPAWN_PROTECTION: 0
       VIEW_DISTANCE: 16
+      REPLACE_ENV_DURING_SYNC: true
+      CFG_FORWARDING_SECRET:
       RCON_CMDS_STARTUP: |-
         gamerule doFireTick false
         gamerule blockExplosionDropDecay false
@@ -71,10 +96,139 @@ services:
     tty: true
     stdin_open: true
     restart: always
+    depends_on:
+      mc-main-restore:
+        condition: service_completed_successfully
     volumes:
       - ./data:/data
+      - ./config:/config
     networks:
-      - web
+      - default
+
+  mc-creative:
+    image: itzg/minecraft-server
+    ports:
+      - 25565
+      - 25575 # rcon
+    environment:
+      SERVER_NAME: Uagadugli Ultras Creative
+      MOTD: "Chli chlötzlä..."
+      SEED: 5103687417315433447
+      LEVEL: 5103687417315433447
+      VERSION: 1.21.4
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet
+      MODRINTH_ALLOWED_VERSION_TYPE: beta
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
+      OPS: |
+        e3d99f42-9c36-42ba-b758-6fecefd94777
+        7a5acfbb-727f-43fc-bf18-47c7e64066c8
+      EXISTING_OPS_FILE: MERGE
+      WHITELIST: |
+        e3d99f42-9c36-42ba-b758-6fecefd94777
+        77ae8d72-d368-4e6c-ae71-623cbbdaec2e
+        57f48d40-ca5e-4898-bceb-a86d478f8a20
+        7a5acfbb-727f-43fc-bf18-47c7e64066c8
+        2229431f-6965-4393-8051-22a8207615eb
+        4e9c22c5-b420-48b3-a267-9dec2e13956a
+        08e2b479-d768-488a-bc10-2c29a3899094
+        f68b95f5-6195-4891-ad73-cf74b06dae01
+        3ee13682-8abc-4015-8c96-d0873a45f5cf
+        b54de4f3-1bb7-414a-9a8b-2f2e6c059891
+        524d8eeb-0fc1-40bf-be3b-d8b0a0efd0f0
+        f999dea9-b112-461c-ad2a-e5498eea08ce
+        0f1295af-1d78-46fe-aefb-90a20083fcc8
+        05af1765-5a9d-48b7-a943-5816312b791c
+      EXISTING_WHITELIST_FILE: MERGE
+      ICON: https://luhelan.ch/images/logo.png
+      # RCON_PASSWORD:
+      EULA: TRUE
+      TYPE: FABRIC
+      MODE: creative
+      FORCE_GAMEMODE: true
+      OVERRIDE_SERVER_PROPERTIES: true
+      ONLINE_MODE: true
+      DIFFICULTY: hard
+      ENABLE_WHITELIST: true
+      ENFORCE_WHITELIST: true
+      OVERRIDE_ICON: true
+      ENABLE_RCON: true
+      MAX_PLAYERS: 20
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: false
+      SNOOPER_ENABLED: false
+      SPAWN_PROTECTION: 0
+      VIEW_DISTANCE: 16
+      REPLACE_ENV_DURING_SYNC: true
+      CFG_FORWARDING_SECRET:
+      RCON_CMDS_STARTUP: |-
+        gamerule doFireTick false
+        gamerule blockExplosionDropDecay false
+        gamerule mobExplosionDropDecay false
+        gamerule tntExplosionDropDecay false
+        gamerule waterSourceConversion true
+        gamerule lavaSourceConversion true
+        gamerule globalSoundEvents false
+      MAX_TICK_TIME: "-1"
+      ENABLE_AUTOPAUSE: true
+      AUTOPAUSE_TIMEOUT_EST: 300
+      AUTOPAUSE_TIMEOUT_INIT: 150
+      MEMORY: "4G"
+    tty: true
+    stdin_open: true
+    restart: always
+    depends_on:
+      mc-creative-restore:
+        condition: service_completed_successfully
+    volumes:
+      - ./creative-data:/data
+      - ./creative-config:/config
+    networks:
+      - default
+
+  # mc-lan:
+  #   image: itzg/minecraft-server
+
+  mc-main-backup:
+    image: itzg/mc-backup
+    depends_on:
+      mc-main:
+        condition: service_healthy
+    environment:
+      BACKUP_INTERVAL: "2h"
+      RCON_HOST: mc-main
+      # RCON_PORT: 25575
+      # RCON_PASSWORD:
+      # since this service waits for mc to be healthy, no initial delay is needed
+      INITIAL_DELAY: 0
+    volumes:
+      - ./data:/data:ro
+      - ./backups:/backups
+    networks:
+      - default
+
+  # "init" container for mc to restore the data volume when empty    
+  mc-main-restore:
+    # Same image as mc, but any base image with bash and tar will work
+    image: itzg/mc-backup
+    restart: "no"
+    entrypoint: restore-tar-backup
+    volumes:
+      # Must be same mount as mc service, needs to be writable
+      - ./data:/data
+      # Must be same mount as backups service, but can be read-only
+      - ./backups:/backups:ro
+
+  # "init" container for mc to restore the data volume when empty    
+  mc-creative-restore:
+    # Same image as mc, but any base image with bash and tar will work
+    image: itzg/mc-backup
+    restart: "no"
+    entrypoint: restore-tar-backup
+    volumes:
+      # Must be same mount as mc service, needs to be writable
+      - ./creative-data:/data
+      # Must be same mount as backups service, but can be read-only
+      - ./backups:/backups:ro
 
   web:
     image: httpd:2.4-alpine
@@ -91,6 +245,10 @@ services:
     networks:
       - web
 
+volumes:
+  proxy-data:
+
 networks:
+  default:
   web:
     external: true
