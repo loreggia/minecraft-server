@@ -37,3 +37,7 @@ servers:
     address: mc-creative:25565
     restricted: false
     motd: ${CFG_MOTD}
+  lan-games:
+    address: mc-lan-games:25565
+    restricted: false
+    motd: ${CFG_MOTD}
