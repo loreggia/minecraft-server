@@ -261,6 +261,10 @@ services:
               ],
               "biome": "minecraft:jungle"
           }
+      GENERATE_STRUCTURES: false
+      SPAWN_ANIMALS: false
+      SPAWN_MONSTERS: false
+      SPAWN_NPCS: false
       REPLACE_ENV_DURING_SYNC: true
       CFG_FORWARDING_SECRET:
       RCON_CMDS_STARTUP: |-
