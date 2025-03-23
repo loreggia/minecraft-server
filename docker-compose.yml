@@ -255,9 +255,9 @@ services:
     tty: true
     stdin_open: true
     restart: always
-    depends_on:
-      mc-lan-restore:
-        condition: service_completed_successfully
+    # depends_on:
+    #   mc-lan-restore:
+    #     condition: service_completed_successfully
     volumes:
       - ./lan-games-data:/data
       - ./lan-games-config:/config
