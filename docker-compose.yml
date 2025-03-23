@@ -235,8 +235,32 @@ services:
       MAX_PLAYERS: 30
       ANNOUNCE_PLAYER_ACHIEVEMENTS: false
       SNOOPER_ENABLED: false
-      SPAWN_PROTECTION: 0
+      SPAWN_PROTECTION: 16
       VIEW_DISTANCE: 12
+      ENABLE_COMMAND_BLOCK: true
+      LEVEL_TYPE: flat
+      GENERATOR_SETTINGS: >-4
+          {
+              "layers": [
+                  {
+                      "block": "minecraft:bedrock",
+                      "height": 1
+                  },
+                  {
+                      "block": "minecraft:stone",
+                      "height": 31
+                  },
+                  {
+                      "block": "minecraft:air",
+                      "height": 28
+                  },
+                  {
+                      "block": "minecraft:white_concrete",
+                      "height": 4
+                  }
+              ],
+              "biome": "minecraft:jungle"
+          }
       REPLACE_ENV_DURING_SYNC: true
       CFG_FORWARDING_SECRET:
       RCON_CMDS_STARTUP: |-
