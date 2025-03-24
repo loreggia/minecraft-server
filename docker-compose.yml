@@ -13,7 +13,7 @@ services:
       CFG_FORWARDING_SECRET:
       REPLACE_ENV_VARIABLES: "true"
       MINECRAFT_VERSION: 1.21.4
-      MODRINTH_PROJECTS: "simple-voice-chat"
+      MODRINTH_PROJECTS: "simple-voice-chat,velocitab"
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
