@@ -1,0 +1,33 @@
+#Send to current dedicated server if chat message starts with matched string.
+mcdr_command_prefix = []
+
+#Show all proxy players on tab list.
+#Deprecated, for removal.
+show_global_tab_list = false
+
+#enable command `glist`.
+enable_command_glist = true
+
+#Enable color code in chat.
+colorable_chat = true
+
+#Whether to take over local chats when global chats.
+overwrite_local_chat = false
+
+#Enable default global chat.
+default_global_chat = true
+
+#Log MCDR commands.
+log_mcdr_commands = true
+
+#Enable cross-server teleport.
+enable_command_tp = false
+
+#Send sample players when client refreshing multiplayer games.
+send_players_on_ping = false
+
+#Set aliases.
+#note: Command "vchat local" is player only.
+[command_alias]
+	local = "lc"
+	broadcast = "br"

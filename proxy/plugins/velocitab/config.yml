@@ -47,8 +47,8 @@ enable_relational_placeholders: false
 #   'feedback', 'community', 'website', 'forums', 'news', or 'announcements').
 # • If you supply a url with a 'bug_report' label, it will be shown if the player is disconnected.
 # • Specify a set of server groups each URL should be sent on. Use '*' to show a URL to all groups.
-# server_links:
-# - label: <#00fb9a>About Velocitab</#00fb9a>
-#   url: https://william278.net/project/velocitab
-#   groups:
-#   - '*'
+server_links:
+- label: <#00fb9a>minecraft.luhelan.ch</#00fb9a>
+  url: https://minecraft.luhelan.ch
+  groups:
+  - '*'

@@ -10,10 +10,10 @@ services:
       ICON: https://luhelan.ch/images/logo.png
       ENV_VARIABLE_PREFIX: "CFG_"
       CFG_MOTD: "Chli chlötzlä!"
-      CFG_FORWARDING_SECRET:
+      CFG_FORWARDING_SECRET: ${CFG_FORWARDING_SECRET:?}
       REPLACE_ENV_VARIABLES: "true"
       MINECRAFT_VERSION: 1.21.4
-      MODRINTH_PROJECTS: "simple-voice-chat,velocitab"
+      MODRINTH_PROJECTS: "simple-voice-chat,velocitab,velocitychat"
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
@@ -28,7 +28,7 @@ services:
     ports:
       - 25565
       - 25575 # rcon
-      - 24454/udp # for simple-voice-chat
+      - 24454/udp # simple-voice-chat
     environment:
       DEBUG: false
       SERVER_NAME: Uagadugli Ultras
@@ -36,7 +36,7 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: 1.21.4
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,welcome-message,alivent-messager
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
@@ -79,7 +79,7 @@ services:
       SPAWN_PROTECTION: 0
       VIEW_DISTANCE: 16
       REPLACE_ENV_DURING_SYNC: true
-      CFG_FORWARDING_SECRET:
+      CFG_FORWARDING_SECRET: ${CFG_FORWARDING_SECRET:?}
       RCON_CMDS_STARTUP: |-
         gamerule doFireTick false
         gamerule blockExplosionDropDecay false
@@ -110,6 +110,7 @@ services:
     ports:
       - 25565
       - 25575 # rcon
+      - 24454/udp # simple-voice-chat
     environment:
       SERVER_NAME: Uagadugli Ultras Creative
       MOTD: "Chli chlötzlä..."
@@ -159,7 +160,7 @@ services:
       SPAWN_PROTECTION: 0
       VIEW_DISTANCE: 12
       REPLACE_ENV_DURING_SYNC: true
-      CFG_FORWARDING_SECRET:
+      CFG_FORWARDING_SECRET: ${CFG_FORWARDING_SECRET:?}
       RCON_CMDS_STARTUP: |-
         gamerule doFireTick false
         gamerule blockExplosionDropDecay false
@@ -168,6 +169,16 @@ services:
         gamerule waterSourceConversion true
         gamerule lavaSourceConversion true
         gamerule globalSoundEvents false
+        gamerule announceAdvancements false
+        gamerule disableElytraMovementCheck true
+        gamerule disablePlayerMovementCheck true
+        gamerule doPatrolSpawning false
+        gamerule doTraderSpawning false
+        gamerule doDaylightCycle false
+        gamerule doWeatherCycle false
+        gamerule keepInventory true
+        weather clear
+        time set noon
       MAX_TICK_TIME: "-1"
       ENABLE_AUTOPAUSE: true
       AUTOPAUSE_TIMEOUT_EST: 300
@@ -190,13 +201,14 @@ services:
     ports:
       - 25565
       - 25575 # rcon
+      - 24454/udp # simple-voice-chat
     environment:
       SERVER_NAME: LuHe-LAN Games
       MOTD: "Geil!"
       SEED: luhelan
       LEVEL: luhelan
       VERSION: 1.21.4
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,no-chat-reports,worldedit
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,worldedit
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
@@ -226,7 +238,7 @@ services:
       MODE: creative
       FORCE_GAMEMODE: true
       OVERRIDE_SERVER_PROPERTIES: true
-      ONLINE_MODE: false
+      ONLINE_MODE: true
       DIFFICULTY: normal
       ENABLE_WHITELIST: true
       ENFORCE_WHITELIST: true
@@ -266,7 +278,7 @@ services:
       SPAWN_MONSTERS: false
       SPAWN_NPCS: false
       REPLACE_ENV_DURING_SYNC: true
-      CFG_FORWARDING_SECRET:
+      CFG_FORWARDING_SECRET: ${CFG_FORWARDING_SECRET:?}
       RCON_CMDS_STARTUP: |-
         gamerule doFireTick false
         gamerule blockExplosionDropDecay false
@@ -275,6 +287,19 @@ services:
         gamerule waterSourceConversion true
         gamerule lavaSourceConversion true
         gamerule globalSoundEvents false
+        gamerule announceAdvancements false
+        gamerule commandBlockOutput false
+        gamerule disableElytraMovementCheck true
+        gamerule disablePlayerMovementCheck true
+        gamerule disableRaids true
+        gamerule doMobSpawning false
+        gamerule doPatrolSpawning false
+        gamerule doTraderSpawning false
+        gamerule doDaylightCycle false
+        gamerule doWeatherCycle false
+        gamerule keepInventory true
+        weather clear
+        time set noon
       MAX_TICK_TIME: "-1"
       ENABLE_AUTOPAUSE: true
       AUTOPAUSE_TIMEOUT_EST: 60
