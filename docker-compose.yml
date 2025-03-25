@@ -41,7 +41,7 @@ services:
       SEED: lobby
       LEVEL: lobby
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,welcome-message,luckperms,vanilla-permissions
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,welcome-message,armor-poser,audioplayer,worldedit,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
