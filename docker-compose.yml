@@ -13,12 +13,17 @@ services:
       CFG_FORWARDING_SECRET: ${CFG_FORWARDING_SECRET:?}
       REPLACE_ENV_VARIABLES: "true"
       MINECRAFT_VERSION: 1.21.4
-      MODRINTH_PROJECTS: "simple-voice-chat,velocitab,velocitychat"
+      MODRINTH_PROJECTS: "simple-voice-chat,velocitab,velocitychat,luckperms"
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
+    tty: true
+    stdin_open: true
     volumes:
       - ./proxy:/config
       - ./proxy-data:/server
+    depends_on:
+      luckperms-db:
+        condition: service_healthy
     networks:
       - default
       - web
@@ -36,7 +41,7 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: 1.21.4
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,welcome-message,alivent-messager
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,welcome-message,alivent-messager,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
@@ -44,7 +49,7 @@ services:
         e3d99f42-9c36-42ba-b758-6fecefd94777
         7a5acfbb-727f-43fc-bf18-47c7e64066c8
         57f48d40-ca5e-4898-bceb-a86d478f8a20
-      EXISTING_OPS_FILE: MERGE
+      EXISTING_OPS_FILE: SYNCHRONIZE
       WHITELIST: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
         77ae8d72-d368-4e6c-ae71-623cbbdaec2e
@@ -60,7 +65,7 @@ services:
         f999dea9-b112-461c-ad2a-e5498eea08ce
         0f1295af-1d78-46fe-aefb-90a20083fcc8
         05af1765-5a9d-48b7-a943-5816312b791c
-      EXISTING_WHITELIST_FILE: MERGE
+      EXISTING_WHITELIST_FILE: SYNCHRONIZE
       ICON: https://luhelan.ch/images/logo.png
       # RCON_PASSWORD:
       EULA: TRUE
@@ -100,6 +105,8 @@ services:
     depends_on:
       mc-main-restore:
         condition: service_completed_successfully
+      luckperms-db:
+        condition: service_healthy
     volumes:
       - ./data:/data
       - ./config:/config
@@ -118,7 +125,7 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: 1.21.4
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
@@ -126,7 +133,7 @@ services:
         e3d99f42-9c36-42ba-b758-6fecefd94777
         7a5acfbb-727f-43fc-bf18-47c7e64066c8
         57f48d40-ca5e-4898-bceb-a86d478f8a20
-      EXISTING_OPS_FILE: MERGE
+      EXISTING_OPS_FILE: SYNCHRONIZE
       WHITELIST: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
         77ae8d72-d368-4e6c-ae71-623cbbdaec2e
@@ -142,7 +149,7 @@ services:
         f999dea9-b112-461c-ad2a-e5498eea08ce
         0f1295af-1d78-46fe-aefb-90a20083fcc8
         05af1765-5a9d-48b7-a943-5816312b791c
-      EXISTING_WHITELIST_FILE: MERGE
+      EXISTING_WHITELIST_FILE: SYNCHRONIZE
       ICON: https://luhelan.ch/images/logo.png
       # RCON_PASSWORD:
       EULA: TRUE
@@ -192,6 +199,8 @@ services:
     depends_on:
       mc-creative-restore:
         condition: service_completed_successfully
+      luckperms-db:
+        condition: service_healthy
     volumes:
       - ./creative-data:/data
       - ./creative-config:/config
@@ -210,7 +219,7 @@ services:
       SEED: luhelan
       LEVEL: luhelan
       VERSION: 1.21.4
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,worldedit
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,worldedit,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
@@ -218,7 +227,7 @@ services:
         e3d99f42-9c36-42ba-b758-6fecefd94777
         7a5acfbb-727f-43fc-bf18-47c7e64066c8
         57f48d40-ca5e-4898-bceb-a86d478f8a20
-      EXISTING_OPS_FILE: MERGE
+      EXISTING_OPS_FILE: SYNCHRONIZE
       WHITELIST: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
         77ae8d72-d368-4e6c-ae71-623cbbdaec2e
@@ -234,7 +243,7 @@ services:
         f999dea9-b112-461c-ad2a-e5498eea08ce
         0f1295af-1d78-46fe-aefb-90a20083fcc8
         05af1765-5a9d-48b7-a943-5816312b791c
-      EXISTING_WHITELIST_FILE: MERGE
+      EXISTING_WHITELIST_FILE: SYNCHRONIZE
       ICON: https://luhelan.ch/images/logo.png
       EULA: TRUE
       TYPE: FABRIC
@@ -311,7 +320,9 @@ services:
     tty: true
     stdin_open: true
     restart: always
-    # depends_on:
+    depends_on:
+      luckperms-db:
+        condition: service_healthy
     #   mc-lan-restore:
     #     condition: service_completed_successfully
     volumes:
@@ -362,8 +373,25 @@ services:
       # Must be same mount as backups service, but can be read-only
       - ./backups:/backups:ro
 
+  luckperms-db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: luckperms
+      MARIADB_ROOT_PASSWORD: luckperms
+    volumes:
+      - luckperms-db-data:/var/lib/mysql:Z
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: always
+    networks:
+      - default
+
 volumes:
-  proxy-data:
+  luckperms-db-data:
 
 networks:
   default:
