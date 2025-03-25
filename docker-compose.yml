@@ -18,7 +18,7 @@ services:
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - ./proxy:/config
-      - proxy-data:/server
+      - ./proxy-data:/server
     networks:
       - default
       - web
@@ -43,6 +43,7 @@ services:
       OPS: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
         7a5acfbb-727f-43fc-bf18-47c7e64066c8
+        57f48d40-ca5e-4898-bceb-a86d478f8a20
       EXISTING_OPS_FILE: MERGE
       WHITELIST: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
@@ -124,6 +125,7 @@ services:
       OPS: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
         7a5acfbb-727f-43fc-bf18-47c7e64066c8
+        57f48d40-ca5e-4898-bceb-a86d478f8a20
       EXISTING_OPS_FILE: MERGE
       WHITELIST: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
@@ -215,6 +217,7 @@ services:
       OPS: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
         7a5acfbb-727f-43fc-bf18-47c7e64066c8
+        57f48d40-ca5e-4898-bceb-a86d478f8a20
       EXISTING_OPS_FILE: MERGE
       WHITELIST: |
         e3d99f42-9c36-42ba-b758-6fecefd94777
