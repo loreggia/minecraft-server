@@ -16,7 +16,8 @@ groups:
     prefix: ''
     suffix: ''
   servers:
-  - main
+  - lobby
+  - survival
   - creative
   - lan-games
   sorting_placeholders:

@@ -1,0 +1,20 @@
+[
+  {
+    "uuid": "e3d99f42-9c36-42ba-b758-6fecefd94777",
+    "name": "Fl4ke",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "57f48d40-ca5e-4898-bceb-a86d478f8a20",
+    "name": "Vexx16",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "7a5acfbb-727f-43fc-bf18-47c7e64066c8",
+    "name": "magnir",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  }
+]

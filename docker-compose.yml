@@ -3,8 +3,8 @@ services:
   proxy:
     image: itzg/mc-proxy
     ports:
-      - 25565:25565
-      - 24454:24454/udp # for simple-voice-chat
+      - 25565:25565 # minecraft
+      - 24454:24454/udp # simple-voice-chat
     environment:
       TYPE: "VELOCITY"
       ICON: https://luhelan.ch/images/logo.png
@@ -12,15 +12,15 @@ services:
       CFG_MOTD: "Chli chlötzlä!"
       CFG_FORWARDING_SECRET: ${CFG_FORWARDING_SECRET:?}
       REPLACE_ENV_VARIABLES: "true"
-      MINECRAFT_VERSION: 1.21.4
+      MINECRAFT_VERSION: ${MINECRAFT_VERSION:?}
       MODRINTH_PROJECTS: "simple-voice-chat,velocitab,velocitychat,luckperms"
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     tty: true
     stdin_open: true
     volumes:
-      - ./proxy:/config
-      - ./proxy-data:/server
+      - ./config/proxy:/config
+      - ./data/proxy:/server
     depends_on:
       luckperms-db:
         condition: service_healthy
@@ -28,10 +28,113 @@ services:
       - default
       - web
 
-  mc-main:
+  mc-lobby:
     image: itzg/minecraft-server
     ports:
-      - 25565
+      - 25565 # minecraft
+      - 25575 # rcon
+      - 24454/udp # simple-voice-chat
+    environment:
+      DEBUG: false
+      SERVER_NAME: Uagadugli Ultras Lobby
+      MOTD: "Chli chlötzlä..."
+      SEED: lobby
+      LEVEL: lobby
+      VERSION: ${MINECRAFT_VERSION:?}
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,welcome-message,luckperms,vanilla-permissions
+      MODRINTH_ALLOWED_VERSION_TYPE: beta
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
+      OPS_FILE: /config/shared/ops.json
+      WHITELIST_FILE: /config/shared/whitelist.json
+      ICON: https://luhelan.ch/images/logo.png
+      EULA: TRUE
+      TYPE: FABRIC
+      MODE: creative
+      FORCE_GAMEMODE: true
+      OVERRIDE_SERVER_PROPERTIES: true
+      ONLINE_MODE: true
+      DIFFICULTY: normal
+      ENABLE_WHITELIST: true
+      ENFORCE_WHITELIST: true
+      OVERRIDE_ICON: true
+      ENABLE_RCON: true
+      MAX_PLAYERS: 20
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: false
+      SNOOPER_ENABLED: false
+      SPAWN_PROTECTION: 0
+      VIEW_DISTANCE: 8
+      ENABLE_COMMAND_BLOCK: true
+      LEVEL_TYPE: flat
+      GENERATOR_SETTINGS: >-4
+          {
+              "layers": [
+                  {
+                      "block": "minecraft:bedrock",
+                      "height": 1
+                  },
+                  {
+                      "block": "minecraft:stone",
+                      "height": 62
+                  },
+                  {
+                      "block": "minecraft:grass_block",
+                      "height": 1
+                  }
+              ],
+              "biome": "minecraft:jungle"
+          }
+      GENERATE_STRUCTURES: false
+      SPAWN_ANIMALS: false
+      SPAWN_MONSTERS: false
+      SPAWN_NPCS: false
+      REPLACE_ENV_DURING_SYNC: true
+      CFG_FORWARDING_SECRET: ${CFG_FORWARDING_SECRET:?}
+      RCON_CMDS_STARTUP: |-
+        gamerule doFireTick false
+        gamerule blockExplosionDropDecay false
+        gamerule mobExplosionDropDecay false
+        gamerule tntExplosionDropDecay false
+        gamerule waterSourceConversion true
+        gamerule lavaSourceConversion true
+        gamerule globalSoundEvents false
+        gamerule announceAdvancements false
+        gamerule commandBlockOutput false
+        gamerule disableElytraMovementCheck true
+        gamerule disablePlayerMovementCheck true
+        gamerule disableRaids true
+        gamerule doMobSpawning false
+        gamerule doPatrolSpawning false
+        gamerule doTraderSpawning false
+        gamerule doDaylightCycle false
+        gamerule doWeatherCycle false
+        gamerule keepInventory true
+        gamerule spawnRadius 0
+        setworldspawn 0 0 0
+        weather clear
+        time set noon
+      MAX_TICK_TIME: "-1"
+      ENABLE_AUTOPAUSE: true
+      AUTOPAUSE_TIMEOUT_EST: 60
+      AUTOPAUSE_TIMEOUT_INIT: 60
+      MEMORY: "1G"
+    tty: true
+    stdin_open: true
+    restart: always
+    depends_on:
+      luckperms-db:
+        condition: service_healthy
+    volumes:
+      - ./data/lobby:/data
+      - ./config/lobby:/config
+      - ./config/shared:/config/shared
+    networks:
+      - default
+
+  mc-survival:
+    image: itzg/minecraft-server
+    ports:
+      - 25565 # minecraft
       - 25575 # rcon
       - 24454/udp # simple-voice-chat
     environment:
@@ -40,32 +143,13 @@ services:
       MOTD: "Chli chlötzlä..."
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
-      VERSION: 1.21.4
+      VERSION: ${MINECRAFT_VERSION:?}
       MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,welcome-message,alivent-messager,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
-      VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
-      OPS: |
-        e3d99f42-9c36-42ba-b758-6fecefd94777
-        7a5acfbb-727f-43fc-bf18-47c7e64066c8
-        57f48d40-ca5e-4898-bceb-a86d478f8a20
-      EXISTING_OPS_FILE: SYNCHRONIZE
-      WHITELIST: |
-        e3d99f42-9c36-42ba-b758-6fecefd94777
-        77ae8d72-d368-4e6c-ae71-623cbbdaec2e
-        57f48d40-ca5e-4898-bceb-a86d478f8a20
-        7a5acfbb-727f-43fc-bf18-47c7e64066c8
-        2229431f-6965-4393-8051-22a8207615eb
-        4e9c22c5-b420-48b3-a267-9dec2e13956a
-        08e2b479-d768-488a-bc10-2c29a3899094
-        f68b95f5-6195-4891-ad73-cf74b06dae01
-        3ee13682-8abc-4015-8c96-d0873a45f5cf
-        b54de4f3-1bb7-414a-9a8b-2f2e6c059891
-        524d8eeb-0fc1-40bf-be3b-d8b0a0efd0f0
-        f999dea9-b112-461c-ad2a-e5498eea08ce
-        0f1295af-1d78-46fe-aefb-90a20083fcc8
-        05af1765-5a9d-48b7-a943-5816312b791c
-      EXISTING_WHITELIST_FILE: SYNCHRONIZE
+      VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
+      OPS_FILE: /config/shared/ops.json
+      WHITELIST_FILE: /config/shared/whitelist.json
       ICON: https://luhelan.ch/images/logo.png
       # RCON_PASSWORD:
       EULA: TRUE
@@ -103,20 +187,21 @@ services:
     stdin_open: true
     restart: always
     depends_on:
-      mc-main-restore:
+      mc-survival-restore:
         condition: service_completed_successfully
       luckperms-db:
         condition: service_healthy
     volumes:
-      - ./data:/data
-      - ./config:/config
+      - ./data/survival:/data
+      - ./config/survival:/config
+      - ./config/shared:/config/shared
     networks:
       - default
 
   mc-creative:
     image: itzg/minecraft-server
     ports:
-      - 25565
+      - 25565 # minecraft
       - 25575 # rcon
       - 24454/udp # simple-voice-chat
     environment:
@@ -124,32 +209,13 @@ services:
       MOTD: "Chli chlötzlä..."
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
-      VERSION: 1.21.4
+      VERSION: ${MINECRAFT_VERSION:?}
       MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
-      VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
-      OPS: |
-        e3d99f42-9c36-42ba-b758-6fecefd94777
-        7a5acfbb-727f-43fc-bf18-47c7e64066c8
-        57f48d40-ca5e-4898-bceb-a86d478f8a20
-      EXISTING_OPS_FILE: SYNCHRONIZE
-      WHITELIST: |
-        e3d99f42-9c36-42ba-b758-6fecefd94777
-        77ae8d72-d368-4e6c-ae71-623cbbdaec2e
-        57f48d40-ca5e-4898-bceb-a86d478f8a20
-        7a5acfbb-727f-43fc-bf18-47c7e64066c8
-        2229431f-6965-4393-8051-22a8207615eb
-        4e9c22c5-b420-48b3-a267-9dec2e13956a
-        08e2b479-d768-488a-bc10-2c29a3899094
-        f68b95f5-6195-4891-ad73-cf74b06dae01
-        3ee13682-8abc-4015-8c96-d0873a45f5cf
-        b54de4f3-1bb7-414a-9a8b-2f2e6c059891
-        524d8eeb-0fc1-40bf-be3b-d8b0a0efd0f0
-        f999dea9-b112-461c-ad2a-e5498eea08ce
-        0f1295af-1d78-46fe-aefb-90a20083fcc8
-        05af1765-5a9d-48b7-a943-5816312b791c
-      EXISTING_WHITELIST_FILE: SYNCHRONIZE
+      VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
+      OPS_FILE: /config/shared/ops.json
+      WHITELIST_FILE: /config/shared/whitelist.json
       ICON: https://luhelan.ch/images/logo.png
       # RCON_PASSWORD:
       EULA: TRUE
@@ -202,15 +268,16 @@ services:
       luckperms-db:
         condition: service_healthy
     volumes:
-      - ./creative-data:/data
-      - ./creative-config:/config
+      - ./data/creative:/data
+      - ./config/creative:/config
+      - ./config/shared:/config/shared
     networks:
       - default
 
   mc-lan-games:
     image: itzg/minecraft-server
     ports:
-      - 25565
+      - 25565 # minecraft
       - 25575 # rcon
       - 24454/udp # simple-voice-chat
     environment:
@@ -218,32 +285,13 @@ services:
       MOTD: "Geil!"
       SEED: luhelan
       LEVEL: luhelan
-      VERSION: 1.21.4
+      VERSION: ${MINECRAFT_VERSION:?}
       MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,worldedit,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
-      VANILLATWEAKS_SHARECODE: VmdO5D,FF8soj
-      OPS: |
-        e3d99f42-9c36-42ba-b758-6fecefd94777
-        7a5acfbb-727f-43fc-bf18-47c7e64066c8
-        57f48d40-ca5e-4898-bceb-a86d478f8a20
-      EXISTING_OPS_FILE: SYNCHRONIZE
-      WHITELIST: |
-        e3d99f42-9c36-42ba-b758-6fecefd94777
-        77ae8d72-d368-4e6c-ae71-623cbbdaec2e
-        57f48d40-ca5e-4898-bceb-a86d478f8a20
-        7a5acfbb-727f-43fc-bf18-47c7e64066c8
-        2229431f-6965-4393-8051-22a8207615eb
-        4e9c22c5-b420-48b3-a267-9dec2e13956a
-        08e2b479-d768-488a-bc10-2c29a3899094
-        f68b95f5-6195-4891-ad73-cf74b06dae01
-        3ee13682-8abc-4015-8c96-d0873a45f5cf
-        b54de4f3-1bb7-414a-9a8b-2f2e6c059891
-        524d8eeb-0fc1-40bf-be3b-d8b0a0efd0f0
-        f999dea9-b112-461c-ad2a-e5498eea08ce
-        0f1295af-1d78-46fe-aefb-90a20083fcc8
-        05af1765-5a9d-48b7-a943-5816312b791c
-      EXISTING_WHITELIST_FILE: SYNCHRONIZE
+      VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
+      OPS_FILE: /config/shared/ops.json
+      WHITELIST_FILE: /config/shared/whitelist.json
       ICON: https://luhelan.ch/images/logo.png
       EULA: TRUE
       TYPE: FABRIC
@@ -323,43 +371,40 @@ services:
     depends_on:
       luckperms-db:
         condition: service_healthy
-    #   mc-lan-restore:
-    #     condition: service_completed_successfully
     volumes:
-      - ./lan-games-data:/data
-      - ./lan-games-config:/config
+      - ./data/lan-games:/data
+      - ./config/lan-games:/config
+      - ./config/shared:/config/shared
     networks:
       - default
 
-  mc-main-backup:
+  mc-survival-backup:
     image: itzg/mc-backup
     depends_on:
-      mc-main:
+      mc-survival:
         condition: service_healthy
     environment:
       BACKUP_INTERVAL: "2h"
-      RCON_HOST: mc-main
-      # RCON_PORT: 25575
-      # RCON_PASSWORD:
+      RCON_HOST: mc-survival
       # since this service waits for mc to be healthy, no initial delay is needed
       INITIAL_DELAY: 0
     volumes:
-      - ./data:/data:ro
-      - ./backups:/backups
+      - ./data/survival:/data:ro
+      - ./backups/survival:/backups
     networks:
       - default
 
   # "init" container for mc to restore the data volume when empty    
-  mc-main-restore:
+  mc-survival-restore:
     # Same image as mc, but any base image with bash and tar will work
     image: itzg/mc-backup
     restart: "no"
     entrypoint: restore-tar-backup
     volumes:
       # Must be same mount as mc service, needs to be writable
-      - ./data:/data
+      - ./data/survival:/data
       # Must be same mount as backups service, but can be read-only
-      - ./backups:/backups:ro
+      - ./backups/survival:/backups:ro
 
   # "init" container for mc to restore the data volume when empty    
   mc-creative-restore:
@@ -369,9 +414,9 @@ services:
     entrypoint: restore-tar-backup
     volumes:
       # Must be same mount as mc service, needs to be writable
-      - ./creative-data:/data
+      - ./data/creative:/data
       # Must be same mount as backups service, but can be read-only
-      - ./backups:/backups:ro
+      - ./backups/survival:/backups:ro
 
   luckperms-db:
     image: mariadb:11
