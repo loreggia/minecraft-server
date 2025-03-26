@@ -50,7 +50,7 @@ services:
       ICON: https://luhelan.ch/images/logo.png
       EULA: TRUE
       TYPE: FABRIC
-      MODE: creative
+      MODE: adventure
       FORCE_GAMEMODE: true
       OVERRIDE_SERVER_PROPERTIES: true
       ONLINE_MODE: true
