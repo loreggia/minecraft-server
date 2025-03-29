@@ -1,7 +1,7 @@
 {
   "allMobMessages": false,
   "playerKillMessages": false,
-  "villagerMessages": true,
+  "villagerMessages": false,
   "loreDrops": true,
   "nameColour": false,
   "speciesName": false,
