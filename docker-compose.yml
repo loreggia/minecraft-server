@@ -18,6 +18,7 @@ services:
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     tty: true
     stdin_open: true
+    restart: unless-stopped
     volumes:
       - ./config/proxy:/config
       - ./data/proxy:/server
@@ -120,7 +121,7 @@ services:
       MEMORY: "1G"
     tty: true
     stdin_open: true
-    restart: always
+    restart: unless-stopped
     depends_on:
       luckperms-db:
         condition: service_healthy
@@ -185,7 +186,7 @@ services:
       MEMORY: "4G"
     tty: true
     stdin_open: true
-    restart: always
+    restart: unless-stopped
     depends_on:
       mc-survival-restore:
         condition: service_completed_successfully
@@ -261,7 +262,7 @@ services:
       MEMORY: "2G"
     tty: true
     stdin_open: true
-    restart: always
+    restart: unless-stopped
     depends_on:
       mc-creative-restore:
         condition: service_completed_successfully
@@ -367,7 +368,7 @@ services:
       MEMORY: "2G"
     tty: true
     stdin_open: true
-    restart: always
+    restart: unless-stopped
     depends_on:
       luckperms-db:
         condition: service_healthy
@@ -433,7 +434,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-    restart: always
+    restart: unless-stopped
     networks:
       - default
 
