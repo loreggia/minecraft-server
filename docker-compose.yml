@@ -13,7 +13,7 @@ services:
       CFG_FORWARDING_SECRET: ${CFG_FORWARDING_SECRET:?}
       REPLACE_ENV_VARIABLES: "true"
       MINECRAFT_VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: "simple-voice-chat,velocitab,velocitychat,luckperms,proxy-command-reloaded:F6qIyBpN,customcommandsvelocity"
+      MODRINTH_PROJECTS: "simple-voice-chat,velocitab,velocitychat,luckperms:vtXGoeps,proxy-command-reloaded:F6qIyBpN,customcommandsvelocity"
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     tty: true
@@ -42,7 +42,7 @@ services:
       SEED: lobby
       LEVEL: lobby
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,welcome-message,armor-poser,audioplayer,worldedit,luckperms,vanilla-permissions,proxy-command-reloaded
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,welcome-message,armor-poser,audioplayer:alpha,worldedit,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
@@ -145,9 +145,12 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,welcome-message,alivent-messager,luckperms,vanilla-permissions,proxy-command-reloaded
+      # alivent-messager
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,welcome-message,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      CF_API_KEY:
+      CURSEFORGE_FILES: carpet
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
       OPS_FILE: /config/shared/ops.json
       WHITELIST_FILE: /config/shared/whitelist.json
@@ -211,9 +214,11 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,luckperms,vanilla-permissions,proxy-command-reloaded
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      CF_API_KEY:
+      CURSEFORGE_FILES: carpet
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
       OPS_FILE: /config/shared/ops.json
       WHITELIST_FILE: /config/shared/whitelist.json
@@ -287,9 +292,11 @@ services:
       SEED: luhelan
       LEVEL: luhelan
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,carpet,worldedit,luckperms,vanilla-permissions,proxy-command-reloaded
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,worldedit,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      CF_API_KEY:
+      CURSEFORGE_FILES: carpet
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
       OPS_FILE: /config/shared/ops.json
       WHITELIST_FILE: /config/shared/whitelist.json

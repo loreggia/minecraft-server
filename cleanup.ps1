@@ -1,0 +1,10 @@
+Remove-Item "./data/creative/mods" -Recurse -ErrorAction SilentlyContinue;
+Remove-Item "./data/creative/logs" -Recurse -ErrorAction SilentlyContinue;
+Remove-Item "./data/lan-games/mods" -Recurse -ErrorAction SilentlyContinue;
+Remove-Item "./data/lan-games/logs" -Recurse -ErrorAction SilentlyContinue;
+Remove-Item "./data/lobby/mods" -Recurse -ErrorAction SilentlyContinue;
+Remove-Item "./data/lobby/logs" -Recurse -ErrorAction SilentlyContinue;
+Remove-Item "./data/survival/mods" -Recurse -ErrorAction SilentlyContinue;
+Remove-Item "./data/survival/logs" -Recurse -ErrorAction SilentlyContinue;
+Remove-Item "./data/proxy/plugins" -Recurse -ErrorAction SilentlyContinue;
+Remove-Item "./data/proxy/logs" -Recurse -ErrorAction SilentlyContinue;
