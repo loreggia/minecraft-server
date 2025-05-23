@@ -146,7 +146,7 @@ services:
       LEVEL: 5103687417315433447
       VERSION: ${MINECRAFT_VERSION:?}
       # alivent-messager
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,welcome-message,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,welcome-message,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl,pickaxable-glass
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       CF_API_KEY:
