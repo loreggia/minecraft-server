@@ -42,7 +42,7 @@ services:
       SEED: lobby
       LEVEL: lobby
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,welcome-message,armor-poser,audioplayer:alpha,worldedit,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,welcome-message,armor-poser,audioplayer:alpha,worldedit,luckperms:EXnNc30c,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
@@ -146,7 +146,7 @@ services:
       LEVEL: 5103687417315433447
       VERSION: ${MINECRAFT_VERSION:?}
       # alivent-messager
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,welcome-message,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl,pickaxable-glass
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,welcome-message,luckperms:EXnNc30c,vanilla-permissions,proxy-command-reloaded:HMDRwgnl,pickaxable-glass
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       CF_API_KEY:
@@ -214,7 +214,7 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,luckperms:EXnNc30c,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       CF_API_KEY:
@@ -292,7 +292,7 @@ services:
       SEED: luhelan
       LEVEL: luhelan
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,worldedit,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer:alpha,worldedit,luckperms:EXnNc30c,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: beta
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       CF_API_KEY:
