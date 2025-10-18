@@ -392,7 +392,7 @@ services:
       mc-survival:
         condition: service_healthy
     environment:
-      BACKUP_INTERVAL: "12h"
+      BACKUP_INTERVAL: "6h"
       PRUNE_BACKUPS_COUNT: 20
       PRUNE_BACKUPS_DAYS: 7
       RCON_HOST: mc-survival
@@ -404,9 +404,7 @@ services:
     networks:
       - default
 
-  # "init" container for mc to restore the data volume when empty    
   mc-survival-restore:
-    # Same image as mc, but any base image with bash and tar will work
     image: itzg/mc-backup
     restart: "no"
     entrypoint: restore-tar-backup
@@ -416,17 +414,64 @@ services:
       # Must be same mount as backups service, but can be read-only
       - ./backups/survival:/backups:ro
 
-  # "init" container for mc to restore the data volume when empty    
+  mc-creative-backup:
+    image: itzg/mc-backup
+    depends_on:
+      mc-creative:
+        condition: service_healthy
+    environment:
+      BACKUP_INTERVAL: "24h"
+      PRUNE_BACKUPS_COUNT: 10
+      PRUNE_BACKUPS_DAYS: 7
+      RCON_HOST: mc-creative
+      INITIAL_DELAY: 0
+    volumes:
+      - ./data/creative:/data:ro
+      - ./backups/creative:/backups
+    networks:
+      - default
+
   mc-creative-restore:
-    # Same image as mc, but any base image with bash and tar will work
     image: itzg/mc-backup
     restart: "no"
     entrypoint: restore-tar-backup
     volumes:
-      # Must be same mount as mc service, needs to be writable
       - ./data/creative:/data
-      # Must be same mount as backups service, but can be read-only
+      - ./backups/creative:/backups:ro
+
+  mc-survival-to-creative-restore:
+    image: itzg/mc-backup
+    restart: "no"
+    entrypoint: restore-tar-backup
+    volumes:
+      - ./data/creative:/data
       - ./backups/survival:/backups:ro
+    scale: 0
+
+  mc-lan-games-backup:
+    image: itzg/mc-backup
+    depends_on:
+      mc-lan-games:
+        condition: service_healthy
+    environment:
+      BACKUP_INTERVAL: "24h"
+      PRUNE_BACKUPS_COUNT: 10
+      PRUNE_BACKUPS_DAYS: 7
+      RCON_HOST: mc-lan-games
+      INITIAL_DELAY: 0
+    volumes:
+      - ./data/lan-games:/data:ro
+      - ./backups/lan-games:/backups
+    networks:
+      - default
+
+  mc-lan-games-restore:
+    image: itzg/mc-backup
+    restart: "no"
+    entrypoint: restore-tar-backup
+    volumes:
+      - ./data/lan-games:/data
+      - ./backups/lan-games:/backups:ro
 
   luckperms-db:
     image: mariadb:11
