@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop";
+
 $execCompose = "docker compose -p minecraft"
 
 Write-Output "Backing up mc-survival";
@@ -8,8 +10,10 @@ iex "$execCompose exec mc-creative-backup backup now"
 Write-Output "Stopping mc-creative";
 iex "$execCompose stop mc-creative"
 
-Write-Output "Removing mc-creative data";
-Remove-Item ./data/creative/* -Recurse -Force -ErrorAction SilentlyContinue
+if (Test-Path "./data/creative") {
+    Write-Output "Removing mc-creative data";
+    Remove-Item ./data/creative/* -Recurse -Force
+}
 
 Write-Output "Creating mc-survival-to-creative-restore";
 iex "$execCompose create mc-survival-to-creative-restore --scale mc-survival-to-creative-restore=1"
