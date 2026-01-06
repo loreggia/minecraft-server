@@ -42,7 +42,7 @@ services:
       SEED: lobby
       LEVEL: lobby
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,welcome-message,armor-poser,audioplayer,worldedit,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,welcome-message,armor-poser,audioplayer,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: alpha
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
@@ -145,8 +145,8 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: ${MINECRAFT_VERSION:?}
-      # alivent-messager,pickaxable-glass
-      MODRINTH_PROJECTS: fabric-api,carpet,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,welcome-message,worldedit,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
+      # alivent-messager,pickaxable-glass,worldedit
+      MODRINTH_PROJECTS: fabric-api,carpet,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,welcome-message,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: alpha
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       CF_API_KEY:
@@ -214,6 +214,7 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: ${MINECRAFT_VERSION:?}
+      # worldedit
       MODRINTH_PROJECTS: fabric-api,carpet,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: alpha
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
@@ -292,7 +293,8 @@ services:
       SEED: luhelan
       LEVEL: luhelan
       VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: fabric-api,carpet,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,worldedit,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
+      # worldedit
+      MODRINTH_PROJECTS: fabric-api,carpet,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,luckperms,vanilla-permissions,proxy-command-reloaded:HMDRwgnl
       MODRINTH_ALLOWED_VERSION_TYPE: alpha
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       CF_API_KEY:
