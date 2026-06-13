@@ -13,7 +13,7 @@ services:
       CFG_FORWARDING_SECRET: ${CFG_FORWARDING_SECRET:?}
       REPLACE_ENV_VARIABLES: "true"
       MINECRAFT_VERSION: ${MINECRAFT_VERSION:?}
-      MODRINTH_PROJECTS: "simple-voice-chat,velocitab,velocitychat:7wXLgXyt,luckperms:GZjsuCmU,proxy-command-reloaded:F6qIyBpN,customcommandsvelocity:utKAZXsh"
+      MODRINTH_PROJECTS: "simple-voice-chat,velocitab:cRbzQiHK,velocitychat:7wXLgXyt,luckperms:GZjsuCmU,proxy-command-reloaded:F6qIyBpN,customcommandsvelocity:utKAZXsh"
       MODRINTH_ALLOWED_VERSION_TYPE: alpha
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       # JVM_OPTS: -Dvelocity.packet-decode-logging=true
@@ -147,10 +147,11 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: ${MINECRAFT_VERSION:?}
-      # alivent-messager,pickaxable-glass,worldedit,proxy-command-reloaded:HMDRwgnl
-      MODRINTH_PROJECTS: fabric-api,carpet,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,welcome-message,luckperms,vanilla-permissions
+      # carpet,alivent-messager,pickaxable-glass,worldedit,proxy-command-reloaded:HMDRwgnl
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,welcome-message,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: alpha
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      MODS: https://github.com/gnembon/fabric-carpet/releases/download/v26.1/fabric-carpet-26.1+v260402.jar
       CF_API_KEY:
       # CURSEFORGE_FILES: carpet
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
@@ -216,10 +217,11 @@ services:
       SEED: 5103687417315433447
       LEVEL: 5103687417315433447
       VERSION: ${MINECRAFT_VERSION:?}
-      # worldedit,proxy-command-reloaded:HMDRwgnl
-      MODRINTH_PROJECTS: fabric-api,carpet,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,luckperms,vanilla-permissions
+      # carpet,worldedit,proxy-command-reloaded:HMDRwgnl
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: alpha
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      MODS: https://github.com/gnembon/fabric-carpet/releases/download/v26.1/fabric-carpet-26.1+v260402.jar
       CF_API_KEY:
       # CURSEFORGE_FILES: carpet
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
@@ -295,10 +297,11 @@ services:
       SEED: luhelan
       LEVEL: luhelan
       VERSION: ${MINECRAFT_VERSION:?}
-      # worldedit,proxy-command-reloaded:HMDRwgnl
-      MODRINTH_PROJECTS: fabric-api,carpet,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,luckperms,vanilla-permissions
+      # carpet,worldedit,proxy-command-reloaded:HMDRwgnl
+      MODRINTH_PROJECTS: fabric-api,fabricproxy-lite,simple-voice-chat,no-chat-reports,armor-poser,audioplayer,luckperms,vanilla-permissions
       MODRINTH_ALLOWED_VERSION_TYPE: alpha
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      MODS: https://github.com/gnembon/fabric-carpet/releases/download/v26.1/fabric-carpet-26.1+v260402.jar
       CF_API_KEY:
       # CURSEFORGE_FILES: carpet
       VANILLATWEAKS_SHARECODE: ${VANILLATWEAKS_SHARECODE:?}
